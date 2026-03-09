@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { db } from './db.js';
 
 export async function testDexie() {
@@ -32,3 +33,35 @@ export async function testDexie() {
         return "Dexie Test Failed: " + e.message;
     }
 }
+=======
+import 'fake-indexeddb/auto';
+import Dexie from 'dexie';
+
+const db = new Dexie('testDB');
+db.version(1).stores({
+    trainingPlans: '++id, assignedAthleteId, title, category, day, focus, arrows, exercises'
+});
+
+async function test() {
+    const plans = [
+        {
+            assignedAthleteId: 1,
+            day: "Tag 1",
+            category: "technique",
+            exercises: ["exercise 1", "exercise 2"],
+            focus: "focus",
+            arrows: "0 Pfeile"
+        }
+    ];
+
+    try {
+        await db.trainingPlans.bulkAdd(plans);
+        console.log("Success! Array was indexed.");
+        const results = await db.trainingPlans.toArray();
+        console.log(results);
+    } catch (e) {
+        console.error("Failed to add:", e.message);
+    }
+}
+test();
+>>>>>>> 69c2a2c (Initial complete project commit)

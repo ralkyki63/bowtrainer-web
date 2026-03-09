@@ -4,11 +4,7 @@ export const db = new Dexie('bowtrainerDB');
 
 db.version(6).stores({
     chats: '++id, role, content, timestamp',
-<<<<<<< HEAD
-    trainingPlans: '++id, assignedAthleteId, title, category, day, focus, arrows, exercises, orderIndex, isLocked',
-=======
     trainingPlans: '++id, assignedAthleteId, title, category, day, focus, arrows, exercises',
->>>>>>> 69c2a2c (Initial complete project commit)
     athletes: '++id, name, age, gender, height, weight, drawWeight, drawLength, scoreIndoor, scoreOutdoor, distanceOutdoor, trainingDays, targetScoreOutdoor, aiInstructions',
     trainingLogs: '++id, assignedAthleteId, date, title, content'
 });
