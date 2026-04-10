@@ -1,19 +1,8 @@
 import React from 'react';
-import { signInWithPopup } from 'firebase/auth';
-import { auth, googleProvider } from '../firebase';
-import { Target, LogIn } from 'lucide-react';
+import { Target, Play } from 'lucide-react';
 import './Login.css';
 
-export default function Login() {
-    const handleGoogleSignIn = async () => {
-        try {
-            await signInWithPopup(auth, googleProvider);
-        } catch (error) {
-            console.error("Fehler beim Login:", error);
-            alert("Es gab ein Problem beim Anmelden. Bitte überprüfe deine Konfiguration.");
-        }
-    };
-
+export default function Login({ onStart }) {
     return (
         <div className="login-container">
             <div className="login-box glass-panel">
@@ -23,13 +12,13 @@ export default function Login() {
                     <p className="login-subtitle">Dein intelligenter Assistent für den Bogensport</p>
                 </div>
                 
-                <button className="google-login-btn primary-btn" onClick={handleGoogleSignIn}>
-                    <LogIn size={20} />
-                    Mit Google anmelden
+                <button className="primary-btn start-btn" onClick={onStart} style={{ padding: '1rem 2rem', fontSize: '1.2rem', gap: '0.75rem' }}>
+                    <Play size={24} fill="currentColor" />
+                    App Starten
                 </button>
                 
                 <div className="login-footer">
-                    <p>Bitte logge dich ein, um fortzufahren.</p>
+                    <p>Klicke auf Starten, um zu beginnen.</p>
                 </div>
             </div>
         </div>

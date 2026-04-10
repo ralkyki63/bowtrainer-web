@@ -6,9 +6,11 @@ import ChatInterface from './components/ChatInterface.jsx';
 import TrainingPlans from './components/TrainingPlans.jsx';
 import AthletesDB from './components/AthletesDB.jsx';
 import TrainingDiary from './components/TrainingDiary.jsx';
+import Login from './components/Login.jsx';
 import './App.css';
 
 function App() {
+    const [hasStarted, setHasStarted] = useState(false);
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [currentView, setCurrentView] = useState('dashboard'); // 'dashboard', 'athletes', 'diary'
 
@@ -32,6 +34,10 @@ function App() {
             localStorage.removeItem('activeAthleteId');
         }
     };
+
+    if (!hasStarted) {
+        return <Login onStart={() => setHasStarted(true)} />;
+    }
 
     return (
         <div className="app-container">
